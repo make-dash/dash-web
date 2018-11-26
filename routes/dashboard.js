@@ -6,14 +6,18 @@ const Class = require('../models/Class')
 router.get('/', (req, res) => {
     Class.find().then(classes => {
         res.render('dashboard', {classes: classes})
-    }) 
-})
+    }).catch(err => {
+        console.error(err)
+    });
+});
 
-//Class view
+//Get a specific class and then display it
 router.get('/:classId', (req, res) => {
     Class.findById(req.params.classId).populate('assignments').then(selectedClass => {
         res.render('class-view', selectedClass)
-    })
-})
+    }).catch(err => {
+        console.error(err);
+    });
+});
 
 module.exports = router;
