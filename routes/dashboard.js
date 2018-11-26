@@ -15,3 +15,5 @@ router.get('/:classId', (req, res) => {
         res.render('class-view', selectedClass)
     })
 })
+
+module.exports = router;
