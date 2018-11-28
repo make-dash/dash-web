@@ -69,3 +69,5 @@ router.delete('/:assignmentId', (req, res) => {
         res.status(500).send('Internal server error occurred trying to delete a assignment');
     })
 })
+
+module.exports = router;
