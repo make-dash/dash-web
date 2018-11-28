@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 //GET a specific class and all of the information from other models contained within
 router.get('/:classId', (req, res) => {
-    Class.find({_id: req.params.classId}).populate('assignments').populate('students').then(targetedClass => {
+    Class.findOne({_id: req.params.classId}).populate('assignments').populate('students').then(targetedClass => {
         res.status(200).render('class', {course: targetedClass});
     }).catch(err => {
         console.error(err)
