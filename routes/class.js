@@ -30,7 +30,7 @@ router.put('/:classId', (req, res) => {
 //Route for creating a class
 router.post('/', (req, res) => {
     Class.create(req.body).then(newClass => {
-        res.redirect('/dashboard');
+        res.redirect('/');
     })
 })
 
