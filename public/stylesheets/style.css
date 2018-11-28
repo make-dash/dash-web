@@ -1,3 +1,45 @@
+/* SIDEBAR */
+body {
+  display: grid;
+  grid-template-columns: 1fr 30fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "sidebar body";
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #393737;
+  height: 100vh;
+}
+
+.makeschool-logo{
+  width: 100%;
+}
+
+.tab {
+  width: 100%;
+  color:#ffffff;
+}
+
+.active.tab {
+  color:#000000;
+  background-color: white;
+}
+
+.tab > img {
+  width: 100%;
+}
+
+.tab > h3 {
+  font-size: 0.4em;
+  margin: 0 8px 0 8px;
+  text-align: center;
+}
+
+.body {
+  grid-area: body;
+}
+
 /* DASHBOARD */
 body {
   font-size: 2.5vw;
@@ -98,13 +140,14 @@ a {
 .students {
   width: 50%;
 }
+
 .assignment {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas: "assignment-name assignment-name assignment-due-date assignment-due-date"
-                        "assignment-description assignment-description assignment-description assignment-description"
-                        "assignment-status assignment-status assignment-status assignment-status";
+    "assignment-description assignment-description assignment-description assignment-description"
+    "assignment-status assignment-status assignment-status assignment-status";
   align-items: center;
   background-color: #b4b4b4;
   border-radius: 3px;
