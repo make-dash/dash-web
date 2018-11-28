@@ -33,3 +33,5 @@ router.delete('/:studentId', (req, res) => {
         res.json(student)
     })
 })
+
+module.exports = router;
