@@ -9,4 +9,8 @@ const Student = require('../models/Student');
 
 chai.use(chaiHttp);
 
+describe('Testing all class api routes', ()
+    => {
 
+   
+}
