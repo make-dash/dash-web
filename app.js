@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const exphbs = require('express-handlebars');
 
 //import routers
 const dashboardRouter = require('./routes/dashboard')
@@ -17,8 +18,8 @@ mongoose.connect(dbUrl, {useNewUrlParser: true})
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars');
 
 //Configure middleware
 app.use(logger('dev'));
