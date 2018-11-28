@@ -39,12 +39,19 @@ router.put('/:studentId', (req, res) => {
 router.post('/', (req, res) => {
     Students.create(req.body).then(student => {
         res.status(200).json(student);
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json({err: err.message});
     })
 })
 
+//DELETE an existing student from our database and then return that student in JSON format
 router.delete('/:studentId', (req, res) => {
     Students.findOneAndDelete({_id: req.params.studentId}).then(student => {
-        res.json(student)
+        res.status(200).json(student)
+    }).catch(err => {
+        console.error(err);
+        res.status(500).json({err: err.message});
     })
 })
 
