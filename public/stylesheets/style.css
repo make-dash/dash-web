@@ -50,13 +50,12 @@ a {
 
 .class>h1 {
   margin: 8px 0px 0px 12px;
-  font-weight: bold;
-  font-stretch: extra-expanded;
   font-size: 1.2em;
+  font-weight: normal;
 }
 
 .class>h2 {
   margin: 0px 0px 0px 12px;
-  font-weight: lighter;
-  font-stretch: expanded;
+  font-size: 1em;
+  font-weight: 300;
 }
