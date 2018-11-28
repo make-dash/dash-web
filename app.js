@@ -8,9 +8,9 @@ const exphbs = require('express-handlebars');
 
 //import routers
 const dashboardRouter = require('./routes/dashboard');
-const classRouter = require('./routes/class');
-const assignmentRouter = require('./routes/assignment');
-const studentRouter = require('./routes/student')
+const classRouter = require('./routes/classes');
+const assignmentRouter = require('./routes/assignments');
+const studentRouter = require('./routes/students')
 
 //Connect to mongo
 const mongoose = require('mongoose');
@@ -32,9 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Configure our routes
 app.use('/', dashboardRouter);
-app.use('/class', classRouter);
-app.use('/assignment', assignmentRouter);
-app.use('/student', studentRouter);
+app.use('/classes', classRouter);
+app.use('/assignments', assignmentRouter);
+app.use('/students', studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
