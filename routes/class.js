@@ -38,9 +38,10 @@ router.put('/:classId', (req, res) => {
 //Route for creating a class
 router.post('/', (req, res) => {
     Class.create(req.body).then(newClass => {
-        res.redirect('/dashboard');
+        res.status(200).redirect('/');
     }).catch(err => {
-        console.error(err)
+        console.error(err);
+        res.status(500).send('Internal server error trying to create a new class')
     })
 })
 
