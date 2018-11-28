@@ -5,7 +5,7 @@ const Class = require('../models/Class')
 //Main dashboard route
 router.get('/', (req, res) => {
     Class.find().then(classes => {
-        res.render('dashboard', {classes: classes})
+        res.render('dashboard', {courses: classes})
     }).catch(err => {
         console.error(err)
     });

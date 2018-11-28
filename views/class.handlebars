@@ -1,25 +1,27 @@
-<header>
-  <h1>class.name</h1>
-  <h2>class.instructor</h2>
+<header class="class-header">
+  <h1>{{course.name}}</h1>
+  <h2>{{course.instructor}}</h2>
 </header>
-<div class="assignments">
-  <h1>Assignments</h1>
-  <ul class="assignment-list">
-    {{#each class.assignments}}
-      <li>
-        <h1 class="assignment-name">{{this.name}}</h1>
-        <h2 class="assignment-description">{{this.description}}</h2>
-        <h3 class="assignment-due-date">Due Date: {{this.dueDate}}</h3>
-        <h2 class="assignment-status">{{status}}</h2>
-      </li>
-    {{/each}}
-  </ul>
-</div>
-<div class="students">
-  <h1>Students</h1>
-  <ul class="student-list">
-    {{#each class.students}}
-      <li>this</li>
-    {{/each}}
-  </ul>
+<div class="content">
+  <div class="assignments">
+    <h1>Assignments</h1>
+    <ul class="assignment-list">
+      {{#each course.assignments}}
+        <li class="assignment">
+          <h1 class="assignment-name">{{this.name}}</h1>
+          <h2 class="assignment-description">{{this.description}}</h2>
+          <h3 class="assignment-due-date">Due Date: {{this.dueDate}}</h3>
+          <h2 class="assignment-status">{{status}}</h2>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="students">
+    <h1>Students</h1>
+    <ul class="student-list">
+      {{#each course.students}}
+        <li>{{this.firstName}} {{this.lastName}}</li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
