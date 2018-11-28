@@ -15,14 +15,14 @@ router.get('/', (req, res) => {
 
 //Route for going to a specific class
 router.get('/:classId', (req, res) => {
-    Class.find({_id: req.params.classId}).then(targetedClass => {
+    Class.find({_id: req.params.classId}).populate('assignments').then(targetedClass => {
         res.render('class', {class: targetedClass});
     })
 })
 
 //Route for updating information about a class
 router.put('/:classId', (req, res) => {
-    Class.findOneAndUpdate({_id: req.params.classId}, req.body).then(updatedClass => {
+    Class.findOneAndUpdate({_id: req.params.classId}, req.body).populate('assignments').then(updatedClass => {
         res.render('class', {class: updatedClass})
     })
 })
