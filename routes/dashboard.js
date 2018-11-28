@@ -11,13 +11,4 @@ router.get('/', (req, res) => {
     });
 });
 
-//Get a specific class and then display it
-router.get('/:classId', (req, res) => {
-    Class.findById(req.params.classId).populate('assignments').then(selectedClass => {
-        res.render('class-view', selectedClass)
-    }).catch(err => {
-        console.error(err);
-    });
-});
-
 module.exports = router;
