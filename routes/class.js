@@ -6,60 +6,68 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const Class = require('../models/Class')
 
-const studentsRouter = require('./students');
-
-//Route for viewing all classes
+//GET all available classes
 router.get('/', (req, res) => {
     Class.find().then(classes => {
-        res.render('classes', {classes: classes})
+        res.status(200).render('classes', {classes: classes})
     }).catch(err => {
-        console.error(err) 
+        console.error(err)
+        res.status(500).send('Internal server error occurred trying to get all available classes')
     })
 })
 
-//Route for going to a specific class
+//GET a specific class and all of the information from other models contained within
 router.get('/:classId', (req, res) => {
     Class.find({_id: req.params.classId}).populate('assignments').populate('students').then(targetedClass => {
-        res.render('class', {class: targetedClass});
+        res.status(200).render('class', {class: targetedClass});
     }).catch(err => {
         console.error(err)
+        res.status(500).send('Internal server error occurred trying to get a specific class');
     })
 })
 
-//Route for updating information about a class
+//GET a form to create a new class
+router.get('/new', (req, res) => {
+   res.status(200).render('new-class');
+});
+
+//PUT a prexisting class and then redirect the user to that class
 router.put('/:classId', (req, res) => {
     Class.findOneAndUpdate({_id: req.params.classId}, req.body).populate('assignments').populate('students').then(updatedClass => {
-        res.render('class', {class: updatedClass})
+        res.status(200).redirect(`/${updatedClass._id}`);
     }).catch(err => {
-        console.error(err)
+        console.error(err);
+        res.status(500).send('Internal server error occurred trying to update a class')
     })
 })
 
-//Route for creating a class
+//POST a new class to our db and then redirect the user to that class
 router.post('/', (req, res) => {
     Class.create(req.body).then(newClass => {
-        res.status(200).redirect('/');
+        res.status(200).redirect(`/${newClass._id}`);
     }).catch(err => {
         console.error(err);
         res.status(500).send('Internal server error trying to create a new class')
     })
 })
 
-//Router for deleting a class
+//DELETE a prexisting class within our db and then return the user back to all classes
 router.delete('/:classId', (req, res) => {
     Class.deleteOne({_id: req.params.classId}).then(deletedClass => {
-        res.redirect('')
+        res.status(200).redirect('/')
     }).catch(err => {
         console.error(err)
+        res.status(500).send('Internal server error occurred trying to delete a class')
     })
 })
 
-//Route for getting students that belong to a specific class
+//GET all students from a specific class in JSON format (for potential future use)
 router.get('/:classId/students', (req, res) => {
     Class.findOne({_id: req.params.studentId}).populate('students').then(currentClass => {
-        res.json(currentClass);
+        res.status(200).json(currentClass);
     }).catch(err => {
-        console.error(err)
+        console.error(err);
+        res.status(500).send('Internal server error occurred trying to update a class');
     })
 })
 
