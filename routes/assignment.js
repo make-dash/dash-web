@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 //Import assignment model
-const Assignment = require('../models/assignment');
+const Assignment = require('../models/Assignment');
 
 //GET all assignments
 router.get('/', (req, res) => {

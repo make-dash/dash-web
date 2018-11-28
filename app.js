@@ -7,7 +7,7 @@ const logger = require('morgan');
 const exphbs = require('express-handlebars');
 
 //import routers
-const dashboardRouter = require('./routes/dashboard')
+const dashboardRouter = require('./routes/dashboard');
 const classRouter = require('./routes/class');
 const assignmentRouter = require('./routes/assignment');
 const studentRouter = require('./routes/student')
