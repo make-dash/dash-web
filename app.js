@@ -6,8 +6,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 //import routers
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const dashboardRouter = require('./routes/dashboard')
 const classRouter = require('./routes/class');
 
