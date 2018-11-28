@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 //Import assignment model
-const Assignment = require('../models/assignment');
+const Assignment = require('../models/Assignment');
 
 //GET all assignments
 router.get('/', (req, res) => {
@@ -69,3 +69,5 @@ router.delete('/:assignmentId', (req, res) => {
         res.status(500).send('Internal server error occurred trying to delete a assignment');
     })
 })
+
+module.exports = router;
