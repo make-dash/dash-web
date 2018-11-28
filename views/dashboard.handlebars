@@ -1,9 +1,12 @@
 <h1>Make Dash</h1>
-{{#each classes}}
-  <a href="/class/{{this.id}}">
-    <div class>
-      <h1>{{this.name}}</h1>
-      <h2>{{this.instructor}}</h2>
-    </div>
-  </a>
+<div class="classes">
+  {{#each classes}}
+    <a href="/class/{{this.id}}">
+      <div class="class">
+        <div class="class-picture"></div>
+        <h1>{{this.name}}</h1>
+        <h2>{{this.instructor}}</h2>
+      </div>
+    </a>
   {{/each}}
+</div>
