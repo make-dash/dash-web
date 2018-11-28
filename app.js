@@ -10,6 +10,7 @@ const exphbs = require('express-handlebars');
 const dashboardRouter = require('./routes/dashboard')
 const classRouter = require('./routes/class');
 const assignmentRouter = require('./routes/assignment');
+const studentRouter = require('./routes/student')
 
 //Connect to mongo
 const mongoose = require('mongoose');
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', dashboardRouter);
 app.use('/class', classRouter);
 app.use('/assignment', assignmentRouter);
+app.use('/student', studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
