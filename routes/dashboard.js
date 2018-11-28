@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
     Class.find().then(classes => {
         res.render('dashboard', {courses: classes})
     }).catch(err => {
-        console.error(err)
+        console.error(err);
+        res.status(500).send('Internal error occurred tyring to render the dashboard')
     });
 });
 
