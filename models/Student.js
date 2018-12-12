@@ -2,9 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //Student model for keeping track of students
-module.exports = mongoose.model('Students', {
-    firstName: String,
-    lastName: String,
+module.exports = mongoose.model('Student', {
+    name: String,
     year: String,
     studentId: Number,
     status: Number,

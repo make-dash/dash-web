@@ -7,11 +7,12 @@ module.exports = mongoose.model('Class', {
     assignments: [{
         type: Schema.Types.ObjectId,
         ref: 'Assignment',
-        default: undefined
+        default: []
     }],
     students: [{
         type: Schema.Types.ObjectId,
-        ref: 'Students'
+        ref: 'Student',
+        default: []
     }]
 })
 
