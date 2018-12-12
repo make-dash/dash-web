@@ -1,9 +1,10 @@
 //Import express and setup router
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 //Import assignment model
 const Assignment = require('../models/Assignment');
+const Class = require('../models/Class');
 
 //GET all assignments
 router.get('/', (req, res) => {
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 
 //GET the form for creating a new assignment
 router.get('/new', (req, res) => {
-    res.status(200).render('new-assignment')
+    res.status(200).render('create-assignment', {course: {_id: req.params.classId }})
 });
 
 //GET a specific assignment
@@ -32,9 +33,14 @@ router.get('/:assignmentId', (req, res) => {
 
 //POST a new assignment to the database and then render it
 router.post('/', (req, res) => {
-    Assignment.create(req.body).then(assignment => {
-        res.status(200).render('assignment', {assignment: assignment})
-    }).catch(err => {
+    Class.findOne({ _id: req.params.classId }).then(currClass => {
+        const newAssignment = new Assignment(req.body);
+        newAssignment.save();
+        currClass.assignments.push(newAssignment);
+        return currClass.save();
+    })
+    .then(currClass => res.redirect(`/classes/${req.params.classId}`))
+    .catch(err => {
         console.error(err);
         res.status(500).send('Internal server error occurred trying to create an assignment');
     })
@@ -62,8 +68,8 @@ router.put('/:assignmentId', (req, res) => {
 
 //DELETE an already existing assignment from the database and return to all the assignments
 router.delete('/:assignmentId', (req, res) => {
-    Assignment.findOneAndDelete({_id: req.params.assignmentId}, req.body).then(assignment => {
-        res.status(200).render('assignments');
+    Assignment.findOneAndDelete({_id: req.params.assignmentId}).then(assignment => {
+        res.status(200).redirect(`/classes/${req.params.classId}`);
     }).catch(err => {
         console.error(err);
         res.status(500).send('Internal server error occurred trying to delete a assignment');
