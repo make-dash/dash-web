@@ -1,0 +1,16 @@
+<form action="/classes/{{course._id}}/assignments" method="POST" id="createAssignment" style="margin-left:4%;">
+    <h1>Create Assignment</h1> 
+    <label for="assignmentName">Assignment name</label>
+    <input type="text" name="name" id="assignmentName" required>
+    <br>
+    <label for="assignmentDesc">Assignment description</label>
+    <textarea name="description" placeholder="Assignment description" cols="50" rows="2" required style="resize:none;" id="assignmentDesc"></textarea>
+    <br>
+    <label for="dueDate">Due date</label>
+    <input type="date" name="dueDate" id="dueDate">
+    <br>
+    <button type="Submit" class="makeButton">Create assignment</button>
+</form>
+
+
+

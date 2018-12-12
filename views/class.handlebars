@@ -2,6 +2,15 @@
   <h1>{{course.name}}</h1>
   <h2>{{course.instructor}}</h2>
 </header>
+<div id="createButtons">
+    <form action="/classes/{{course._id}}/assignments/new" style="display:inline;">
+        <button class="makeButton">Create assignment</button>
+        </form>
+    <form action="/classes/{{course._id}}/students/new" style="display:inline;">
+        <button class="makeButton">Create Student</button>
+    </form>
+
+</div>
 <div class="content">
   <div class="assignments">
     <h1>Assignments</h1>
@@ -12,6 +21,9 @@
           <h2 class="assignment-description">{{this.description}}</h2>
           <h3 class="assignment-due-date">Due Date: {{this.dueDate}}</h3>
           <h2 class="assignment-status">{{status}}</h2>
+          <form action="/classes/{{../course._id}}/assignments/{{this._id}}?_method=DELETE" method="POST">
+              <button class="makeButton" type="Submit">Delete Assignment</button>
+          </form>
         </li>
       {{/each}}
     </ul>
@@ -20,7 +32,10 @@
     <h1>Students</h1>
     <ul class="student-list">
       {{#each course.students}}
-        <li>{{this.firstName}} {{this.lastName}}</li>
+          <li>{{this.name}}</li>
+          <form  action="/classes/{{../course._id}}/students/{{this._id}}?_method=DELETE" method="POST">
+              <button class="makeButton" type="Submit">Remove Student</button>
+          </form>
       {{/each}}
     </ul>
   </div>

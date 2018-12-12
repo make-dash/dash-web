@@ -1,17 +1,19 @@
 <div class="sidebar">
   <img class="makeschool-logo" src="/img/makeschool-logo.png" alt="make school logo">
   <a href="/">
-    <div class="active tab dashboard">
-      <img src="/img/graph-black.png" alt=" black dashboard icon">
+      <div class="{{dash.active}} tab dashboard">
+          <img src="/img/graph-black.png" alt=" {{dash.black}} dashboard icon">
       <h3>Dashboard</h3>
     </div>
   </a>
-  <div class="tab courses">
-    <img src="/img/book-white.png" alt="">
-    <h3>Courses</h3>
-  </div>
-  <div class="tab calendar">
-    <img src="/img/calendar-white.png" alt="">
+  <a href="/classes">
+      <div class="{{classes.active}} tab courses">
+          <img src="/img/book-white.png" alt=" {{classes.black}}">
+        <h3>Courses</h3>
+      </div>
+  </a>
+  <div class="{{calendar.active}} tab calendar">
+      <img src="/img/calendar-white.png" alt="{{calendar.black}}">
     <h3>Calendar</h3>
   </div>
 </div>
