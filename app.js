@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
 
 //import routers
 const dashboardRouter = require('./routes/dashboard');
@@ -14,7 +15,7 @@ const studentRouter = require('./routes/students')
 
 //Connect to mongo
 const mongoose = require('mongoose');
-const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/make-dash'
+const dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/make-dashw'
 mongoose.connect(dbUrl, {useNewUrlParser: true})
 
 const app = express();
@@ -25,6 +26,7 @@ app.set('view engine', 'handlebars');
 
 //Configure middleware
 app.use(logger('dev'));
+app.use(methodOverride('_method'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -33,8 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Configure our routes
 app.use('/', dashboardRouter);
 app.use('/classes', classRouter);
-app.use('/assignments', assignmentRouter);
-app.use('/students', studentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
